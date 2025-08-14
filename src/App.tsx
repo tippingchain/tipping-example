@@ -5,7 +5,7 @@ import type { TipParams, TipResult } from '@tippingchain/sdk';
 import { getContractAddress, SUPPORTED_CHAINS } from '@tippingchain/contracts-interface';
 import './App.css';
 
-import { useActiveAccount } from 'thirdweb/react'; // Trying a different hook based on thirdweb docs
+import { useActiveAccount, ConnectButton } from 'thirdweb/react';
 
 function App() {
   const [sdk, setSdk] = useState<ApeChainTippingSDK | null>(null);
@@ -22,12 +22,12 @@ function App() {
       // Hardcode Base chain ID as SUPPORTED_CHAINS might be an object
       const baseChainId = 8453; // Base chain ID as per earlier error context
       const config = {
-        environment: 'production' as const, // Fixed to use literal type
-        chainId: baseChainId,
-        contractAddress: getContractAddress(baseChainId) || '', // Adjusted argument based on error
-        clientId: 'placeholder-client-id', // Added required field
+        environment: import.meta.env.VITE_ENVIRONMENT || 'production',
+        chainId: Number(import.meta.env.VITE_CHAIN_ID) || baseChainId,
+        contractAddress: import.meta.env.VITE_CONTRACT_ADDRESS || getContractAddress(baseChainId) || '',
+        clientId: import.meta.env.VITE_CLIENT_ID || 'placeholder-client-id', // Fallback to placeholder if not set
         endpoints: {
-          relayApi: 'https://api.relay.link',
+          relayApi: import.meta.env.VITE_RELAY_API_URL || 'https://api.relay.link', // Fallback to placeholder if not set
         },
       };
 
@@ -71,14 +71,17 @@ function App() {
     }
   };
 
+  // Using ConnectButton component directly for wallet connection
+
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
+      <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
+        <ConnectButton client={{ clientId: import.meta.env.VITE_CLIENT_ID || 'placeholder-client-id', secretKey: import.meta.env.VITE_SECRET_KEY || 'placeholder-secret-key' }} />
+      </div>
       <div style={{ padding: '20px', border: '1px solid #ccc', marginBottom: '20px' }}>
+        <img src="/tippingchain.png" alt="Stream Thumbnail" style={{ maxWidth: '200px' }} />
         <h1>Streaming Demo</h1>
-        <p>Streamer: Demo Streamer</p>
-        <p>Stream Title: Live Streaming Demo</p>
         <p>Viewers: 123</p>
-        <img src="/vite.svg" alt="Stream Thumbnail" style={{ maxWidth: '200px' }} />
       </div>
       <div className="tipping-container" style={{ marginTop: '20px' }}>
         <h2>Tip the Streamer</h2>
@@ -104,6 +107,14 @@ function App() {
           <>
             {/* Simplified status message */}
             <p>Status: {JSON.stringify(tipResult)}</p>
+            {/* Display contract split details */}
+            <div style={{ marginTop: '15px', border: '1px solid #ddd', padding: '10px', borderRadius: '5px' }}>
+              <h3>Contract Split Details</h3>
+              <p>Creator: 80% of tip amount</p>
+              <p>Platform: 15% of tip amount</p>
+              <p>Viewer Rewards: 5% of tip amount</p>
+              <p>Note: These are placeholder values and should be updated based on actual contract logic.</p>
+            </div>
             {/* Display viewer splits if successful */}
             {/* ViewerRewardStats component usage commented out due to prop issues */}
           </>

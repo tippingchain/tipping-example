@@ -57,11 +57,13 @@ function App() {
         sourceChainId: 8453, // Base chain ID as number
         creatorId: 1, // Placeholder numeric value for creator ID; adjust based on SDK
         amount: amount.toString(), // Convert to string to match expected type
-        token: isEth ? '0' : '1', // Placeholder string values for ETH ('0') and USD/stablecoin ('1'); adjust based on SDK token IDs
+        token: isEth ? 'ETH' : 'USDC', // Use more descriptive token identifiers for clarity; adjust based on SDK requirements
       };
 
+      console.log('Sending tip with params:', tipParams);
       // Assuming a method like sendTip or similar exists; adjust based on SDK
       const result = await sdk.sendTip(tipParams); // Placeholder for actual method
+      console.log('Tip result:', result);
       setTipResult(result);
     } catch (error) {
       console.error('Tipping failed:', error);

@@ -25,9 +25,9 @@ function App() {
         environment: import.meta.env.VITE_ENVIRONMENT || 'production',
         chainId: Number(import.meta.env.VITE_CHAIN_ID) || baseChainId,
         contractAddress: import.meta.env.VITE_CONTRACT_ADDRESS || getContractAddress(baseChainId) || '',
-        clientId: import.meta.env.VITE_CLIENT_ID || 'placeholder-client-id', // Fallback to placeholder if not set
+        clientId: import.meta.env.VITE_CLIENT_ID || '', // Ensure environment variable is set with valid credentials
         endpoints: {
-          relayApi: import.meta.env.VITE_RELAY_API_URL || 'https://api.relay.link', // Fallback to placeholder if not set
+          relayApi: import.meta.env.VITE_RELAY_API_URL || 'https://api.relay.link',
         },
       };
 
@@ -76,7 +76,8 @@ function App() {
   return (
     <div style={{ position: 'relative' }}>
       <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
-        <ConnectButton client={{ clientId: import.meta.env.VITE_CLIENT_ID || 'placeholder-client-id', secretKey: import.meta.env.VITE_SECRET_KEY || 'placeholder-secret-key' }} />
+        {/* Ensure VITE_CLIENT_ID and VITE_SECRET_KEY are set in your .env file with valid thirdweb credentials */}
+        <ConnectButton client={{ clientId: import.meta.env.VITE_CLIENT_ID || '', secretKey: import.meta.env.VITE_SECRET_KEY || '' }} />
       </div>
       <div style={{ padding: '20px', border: '1px solid #ccc', marginBottom: '20px' }}>
         <img src="/tippingchain.png" alt="Stream Thumbnail" style={{ maxWidth: '200px' }} />

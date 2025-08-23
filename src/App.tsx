@@ -9,9 +9,9 @@ import './App.css'
 // Main App Component
 const App = () => {
   return (
-    <ThirdwebProvider clientId={ENV.THIRDWEB_CLIENT_ID}>
+    <ThirdwebProvider>
       <ErrorBoundary>
-        <Router>
+        <Router basename="/tipping-example">
           <Layout>
             <Routes>
               <Route path="/" element={<HomePage />} />

@@ -247,6 +247,64 @@ npm run preview
 VITE_USE_TESTNET=true npm run build
 ```
 
+## 🔧 Troubleshooting
+
+### Build Issues
+
+If you encounter build failures, use the debug script to identify the problem:
+
+```bash
+npm run debug-build
+```
+
+This script will:
+- Clean previous installations
+- Reinstall dependencies
+- Verify package accessibility
+- Test the build process
+- Provide detailed error information
+
+### Common Build Problems
+
+1. **Package Resolution Issues**
+   ```bash
+   # Clean install
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+2. **Version Mismatches**
+   - Ensure you're using Node.js 18+ or 20+
+   - Check that package versions in package.json are correct
+   - Verify npm cache: `npm cache clean --force`
+
+3. **Vite Build Failures**
+   - Check import statements in your components
+   - Verify all dependencies are properly installed
+   - Check the Vite configuration in `vite.config.ts`
+
+4. **GitHub Actions Failures**
+   - Ensure repository secrets are properly configured
+   - Check workflow logs for specific error messages
+   - Verify the workflow files are in the correct location
+
+### Debug Commands
+
+```bash
+# Check package installation
+npm list --depth=0
+
+# Verify specific packages
+npm list @tippingchain/ui-react @tippingchain/sdk
+
+# Test package accessibility
+node -e "console.log(require('@tippingchain/ui-react'))"
+
+# Check build configuration
+npm run typecheck
+npm run lint
+```
+
 ## 🔗 Integration
 
 ### Using TippingChain Components

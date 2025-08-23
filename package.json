@@ -16,7 +16,8 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --watch",
     "deploy": "npm run build && gh-pages -d dist",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "debug-build": "./scripts/debug-build.sh"
   },
   "dependencies": {
     "@tippingchain/contracts-interface": "^1.5.0",

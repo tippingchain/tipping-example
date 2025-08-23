@@ -22,10 +22,16 @@ export default defineConfig({
       }
     }
   },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./src/tests/setup.ts'],
-    css: true
+  optimizeDeps: {
+    include: [
+      '@tippingchain/ui-react',
+      '@tippingchain/sdk',
+      '@tippingchain/contracts-interface'
+    ]
+  },
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
   }
 })

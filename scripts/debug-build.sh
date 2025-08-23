@@ -15,7 +15,7 @@ if [ ! -f "package.json" ]; then
 fi
 
 echo "📁 Current directory: $(pwd)"
-echo "📦 Package name: $(node -p "require('./package.json').name)"
+echo "📦 Package name: $(node -p 'require(\"./package.json\").name')"
 
 # Check Node.js version
 echo "🟢 Node.js version: $(node --version)"
@@ -39,28 +39,14 @@ npm list @tippingchain/ui-react @tippingchain/sdk @tippingchain/contracts-interf
 
 # Check if packages are accessible
 echo "🔍 Checking package accessibility..."
-node -e "
-try {
-  require('@tippingchain/ui-react');
-  console.log('✅ @tippingchain/ui-react is accessible');
-} catch (e) {
-  console.log('❌ @tippingchain/ui-react is NOT accessible:', e.message);
-}
+echo "Testing @tippingchain/ui-react..."
+node -e "try { require('@tippingchain/ui-react'); console.log('✅ @tippingchain/ui-react is accessible'); } catch (e) { console.log('❌ @tippingchain/ui-react is NOT accessible:', e.message); }"
 
-try {
-  require('@tippingchain/sdk');
-  console.log('✅ @tippingchain/sdk is accessible');
-} catch (e) {
-  console.log('❌ @tippingchain/sdk is NOT accessible:', e.message);
-}
+echo "Testing @tippingchain/sdk..."
+node -e "try { require('@tippingchain/sdk'); console.log('✅ @tippingchain/sdk is accessible'); } catch (e) { console.log('❌ @tippingchain/sdk is NOT accessible:', e.message); }"
 
-try {
-  require('@tippingchain/contracts-interface');
-  console.log('✅ @tippingchain/contracts-interface is accessible');
-} catch (e) {
-  console.log('❌ @tippingchain/contracts-interface is NOT accessible:', e.message);
-}
-"
+echo "Testing @tippingchain/contracts-interface..."
+node -e "try { require('@tippingchain/contracts-interface'); console.log('✅ @tippingchain/contracts-interface is accessible'); } catch (e) { console.log('❌ @tippingchain/contracts-interface is NOT accessible:', e.message); }"
 
 # Try to build
 echo "🏗️  Attempting build..."

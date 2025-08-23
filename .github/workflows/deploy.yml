@@ -32,13 +32,6 @@ jobs:
         
     - name: Install dependencies
       run: npm install
-      
-    - name: Verify package installation
-      run: |
-        echo "Installed packages:"
-        npm list --depth=0
-        echo "TippingChain packages:"
-        npm list @tippingchain/ui-react @tippingchain/sdk @tippingchain/contracts-interface
         
     - name: Create environment file
       run: |

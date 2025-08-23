@@ -50,3 +50,4 @@ export const SUCCESS_MESSAGES = {
   WALLET_CONNECTED: 'Wallet connected successfully!',
   TRANSACTION_CONFIRMED: 'Transaction confirmed!'
 } as const
+

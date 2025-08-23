@@ -175,3 +175,4 @@ class TippingService {
 // Export singleton instance
 export const tippingService = new TippingService()
 export default tippingService
+

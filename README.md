@@ -57,6 +57,36 @@ This demo application demonstrates the complete TippingChain ecosystem:
 4. **Open your browser:**
    Navigate to `http://localhost:5173`
 
+## 🌐 GitHub Pages Deployment
+
+This application includes automatic GitHub Pages deployment via GitHub Actions.
+
+### Automatic Deployment Setup
+
+1. **Fork or clone** this repository to your GitHub account
+2. **Enable GitHub Pages**: Go to Settings → Pages → Source → "GitHub Actions"
+3. **Add Repository Secrets**: Go to Settings → Secrets and variables → Actions
+   - `VITE_THIRDWEB_CLIENT_ID`: Your Thirdweb client ID (required)
+   - `VITE_ADMIN_ADDRESSES`: Comma-separated admin wallet addresses (optional)
+   - `VITE_OWNER_ADDRESSES`: Comma-separated owner wallet addresses (optional)
+4. **Push to main branch** - deployment happens automatically!
+
+### Manual Deployment
+
+To manually trigger a deployment:
+1. Go to Actions tab in your repository
+2. Select "Deploy to GitHub Pages" workflow
+3. Click "Run workflow"
+
+### Deployment Features
+
+- ✅ **Automatic builds** on every push to main branch
+- ✅ **Environment configuration** from repository secrets
+- ✅ **Production optimization** with proper chunk splitting
+- ✅ **Quality checks** with tests and linting
+- ✅ **Secure deployment** with proper permissions
+
+For detailed setup instructions, see [`.github/workflows/README.md`](.github/workflows/README.md).
 
 ## 🛠️ Development
 
@@ -193,28 +223,27 @@ npm run test:ui
 - **Integration Testing**: SDK interactions
 - **Mock Testing**: External service mocking
 
-## 🚀 Deployment
+## 🚀 Production Deployment
 
-### Build for Production
+### GitHub Pages (Recommended)
 
-```bash
-npm run build
-```
-
-### GitHub Pages Deployment
+The easiest way to deploy is using the included GitHub Actions:
 
 1. **Fork this repository**
 2. **Enable GitHub Pages** in repository settings
 3. **Set environment variables** in GitHub Actions secrets
-4. **Push to main branch** - automatic deployment
+4. **Push to main branch** - automatic deployment!
 
-### Environment-Specific Builds
+### Manual Build
 
 ```bash
-# Production
+# Production build
 npm run build
 
-# Testnet
+# Preview build
+npm run preview
+
+# Testnet build
 VITE_USE_TESTNET=true npm run build
 ```
 
@@ -268,11 +297,17 @@ const result = await sendTip({
    - Check gas fees and limits
    - Ensure creator is registered
 
+4. **GitHub Pages Deployment Issues**
+   - Ensure GitHub Pages is enabled and set to "GitHub Actions"
+   - Check that repository secrets are properly configured
+   - Verify the main branch contains the latest code
+
 ### Resources
 
 - **Documentation**: [TippingChain Docs](../docs)
 - **GitHub**: [TippingChain Repository](https://github.com/tippingchain)
 - **Issues**: [GitHub Issues](https://github.com/tippingchain/issues)
+- **Workflows**: [GitHub Actions Setup](.github/workflows/README.md)
 
 ## 📄 License
 

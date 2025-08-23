@@ -58,13 +58,11 @@ const HomePage = () => {
     <div className="space-y-8">
       {/* Hero Section */}
       <div className="text-center">
-        <div className="flex justify-center mb-6">
-          <img 
-            src="/tippingchain.png" 
-            alt="TippingChain" 
-            className="h-24 w-24"
-          />
-        </div>
+        <img 
+          src="/tipping-example/tippingchain.png" 
+          alt="TippingChain Logo" 
+          className="mx-auto h-32 w-32 mb-8"
+        />
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
           Welcome to TippingChain Demo
         </h1>

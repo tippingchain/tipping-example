@@ -31,9 +31,9 @@ const Navigation = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
               <img 
-                className="h-8 w-auto" 
-                src="/tippingchain.png" 
+                src="/tipping-example/tippingchain.png" 
                 alt="TippingChain" 
+                className="h-8 w-8 mr-2"
               />
               <span className="ml-2 text-xl font-bold text-gray-900">
                 TippingChain Demo

@@ -39,7 +39,8 @@ const Navigation = () => {
               <img 
                 src="/tipping-example/tippingchain.png" 
                 alt="TippingChain" 
-                className="h-8 w-8 mr-2"
+                className="mr-2"
+                style={{ width: '24px', height: '24px' }}
               />
               <span className="text-xl font-bold text-gray-900">
                 TippingChain Demo

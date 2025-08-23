@@ -26,7 +26,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.7.1",
-    "thirdweb": "^5.105.26"
+    "thirdweb": "^5.105.37"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

@@ -1,6 +1,6 @@
 // Environment configuration
 export const ENV = {
-  THIRDWEB_CLIENT_ID: import.meta.env.VITE_THIRDWEB_CLIENT_ID || '',
+  THIRDWEB_CLIENT_ID: import.meta.env.VITE_THIRDWEB_CLIENT_ID || 'df6b18c1d07bf0cc9287b48180157b10',
   ENVIRONMENT: import.meta.env.VITE_ENVIRONMENT || 'production',
   USE_TESTNET: import.meta.env.VITE_USE_TESTNET === 'true',
   DEFAULT_CHAIN_ID: Number(import.meta.env.VITE_DEFAULT_CHAIN_ID) || 8453,

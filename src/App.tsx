@@ -1,15 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ThirdwebProvider } from 'thirdweb/react'
+import { createThirdwebClient } from 'thirdweb'
 import { Layout, ErrorBoundary } from './components'
 import { HomePage, StreamingPage, AdminPage } from './pages'
-import { useSDK } from './hooks'
 import { ENV } from './utils/constants'
 import './App.css'
+
+// Create ThirdWeb client
+const client = createThirdwebClient({
+  clientId: ENV.THIRDWEB_CLIENT_ID,
+})
 
 // Main App Component
 const App = () => {
   return (
-    <ThirdwebProvider>
+    <ThirdwebProvider client={client}>
       <ErrorBoundary>
         <Router basename="/tipping-example">
           <Layout>

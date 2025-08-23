@@ -1,7 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
 import { ConnectButton } from 'thirdweb/react'
+import { createThirdwebClient } from 'thirdweb'
 import { useWallet } from '../hooks'
-import { ROUTES } from '../utils/constants'
+import { ROUTES, ENV } from '../utils/constants'
+
+// Create ThirdWeb client
+const client = createThirdwebClient({
+  clientId: ENV.THIRDWEB_CLIENT_ID,
+})
 
 const Navigation = () => {
   const location = useLocation()
@@ -35,7 +41,7 @@ const Navigation = () => {
                 alt="TippingChain" 
                 className="h-8 w-8 mr-2"
               />
-              <span className="ml-2 text-xl font-bold text-gray-900">
+              <span className="text-xl font-bold text-gray-900">
                 TippingChain Demo
               </span>
             </div>
@@ -75,7 +81,7 @@ const Navigation = () => {
                 )}
               </div>
             )}
-            <ConnectButton />
+            <ConnectButton client={client} />
           </div>
         </div>
       </div>

@@ -57,24 +57,19 @@ const HomePage = () => {
   return (
     <div className="space-y-8">
       {/* Hero Section */}
-      <div className="text-center">
-        <img 
-          src="/tipping-example/tippingchain.png" 
-          alt="TippingChain Logo" 
-          className="mx-auto h-32 w-32 mb-8"
-        />
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Welcome to TippingChain Demo
+      <div className="bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl p-8 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Welcome to TippingChain
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
           Experience the future of multi-chain tipping with integrated Relay.link bridging, 
           creator management, and viewer rewards - all powered by USDC payouts on ApeChain.
         </p>
         
         {!isConnected && (
-          <div className="mt-8">
-            <p className="text-gray-500 mb-4">
-              Connect your wallet to get started
+          <div className="bg-white/70 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto">
+            <p className="text-gray-700 font-medium">
+              🔗 Connect your wallet to get started
             </p>
           </div>
         )}
@@ -86,10 +81,10 @@ const HomePage = () => {
           <Link
             key={feature.title}
             to={feature.path}
-            className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+            className="group block p-6 bg-white rounded-xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
           >
-            <div className="text-4xl mb-4">{feature.icon}</div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-200">{feature.icon}</div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-200">
               {feature.title}
             </h3>
             <p className="text-gray-600 text-sm">
@@ -100,9 +95,9 @@ const HomePage = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Actions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-xl shadow-md p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Quick Actions</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {quickActions.map((action) => {
             if (action.requiresAdmin && !user.canAccessAdmin) {
               return null
@@ -112,9 +107,9 @@ const HomePage = () => {
               <Link
                 key={action.label}
                 to={action.path}
-                className={`${action.color} text-white font-medium py-3 px-4 rounded-lg text-center transition-colors duration-200`}
+                className={`${action.color} text-white font-medium py-4 px-6 rounded-xl text-center transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl`}
               >
-                <div className="text-lg font-semibold">{action.label}</div>
+                <div className="text-lg font-semibold mb-1">{action.label}</div>
                 <div className="text-sm opacity-90">{action.description}</div>
               </Link>
             )
@@ -123,56 +118,60 @@ const HomePage = () => {
       </div>
 
       {/* Demo Creator Info */}
-      <div className="bg-gradient-to-r from-primary-50 to-blue-50 rounded-lg p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Demo Creator</h2>
-        <div className="bg-white rounded-lg p-4 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Creator ID</p>
-              <p className="text-lg font-semibold text-gray-900">#{ENV.DEMO_CREATOR_ID}</p>
+      <div className="bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl p-6">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">🎯 Demo Creator</h2>
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="text-center">
+              <p className="text-sm text-gray-600 mb-1">Creator ID</p>
+              <p className="text-2xl font-bold text-primary-600">#{ENV.DEMO_CREATOR_ID}</p>
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Wallet Address</p>
-              <p className="text-sm font-mono text-gray-900 break-all">
-                {ENV.DEMO_CREATOR_WALLET}
+            <div className="text-center">
+              <p className="text-sm text-gray-600 mb-1">Network</p>
+              <p className="text-lg font-semibold text-gray-900">
+                {ENV.USE_TESTNET ? '🧪 Testnet' : '🌐 Mainnet'}
               </p>
             </div>
-            <div>
-              <p className="text-sm text-gray-600">Network</p>
-              <p className="text-lg font-semibold text-gray-900">
-                {ENV.USE_TESTNET ? 'Testnet' : 'Mainnet'}
+            <div className="text-center">
+              <p className="text-sm text-gray-600 mb-1">Wallet Address</p>
+              <p className="text-xs font-mono text-gray-700 bg-gray-50 rounded px-2 py-1">
+                {ENV.DEMO_CREATOR_WALLET.slice(0, 6)}...{ENV.DEMO_CREATOR_WALLET.slice(-4)}
               </p>
             </div>
           </div>
-          <div className="mt-4 text-center">
+          <div className="text-center">
             <Link
               to={ROUTES.STREAMING}
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 transition-all duration-200 shadow-lg"
             >
-              Start Tipping Demo Creator
+              ⚡ Start Tipping Demo Creator
             </Link>
           </div>
         </div>
       </div>
 
       {/* Platform Info */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Platform Information</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Supported Networks</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>• Ethereum, Polygon, Optimism, BSC</li>
-              <li>• Abstract, Avalanche, Base, Arbitrum, Taiko</li>
-              <li>• Destination: ApeChain (USDC payouts)</li>
+      <div className="bg-white rounded-xl shadow-md p-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">📋 Platform Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              🌐 Supported Networks
+            </h3>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li className="flex items-center"><span className="mr-2">⚡</span> Ethereum, Polygon, Optimism, BSC</li>
+              <li className="flex items-center"><span className="mr-2">🔗</span> Abstract, Avalanche, Base, Arbitrum, Taiko</li>
+              <li className="flex items-center"><span className="mr-2">🎯</span> Destination: ApeChain (USDC payouts)</li>
             </ul>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Fee Structure</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>• Creator Tips: 5% platform fee + tier-based splits</li>
-              <li>• Viewer Rewards: 1% platform fee</li>
-              <li>• Automatic USDC conversion on ApeChain</li>
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              💰 Fee Structure
+            </h3>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li className="flex items-center"><span className="mr-2">🎪</span> Creator Tips: 5% platform fee + tier-based splits</li>
+              <li className="flex items-center"><span className="mr-2">🎁</span> Viewer Rewards: 1% platform fee</li>
+              <li className="flex items-center"><span className="mr-2">🔄</span> Automatic USDC conversion on ApeChain</li>
             </ul>
           </div>
         </div>

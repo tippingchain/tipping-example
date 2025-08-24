@@ -126,11 +126,25 @@ export const useSDK = () => {
     return await tippingService.getTokenBalance(wallet, tokenAddress, chainId)
   }, [isInitialized])
 
+  const getSDKInstance = useCallback(() => {
+    if (!isInitialized) {
+      return null
+    }
+    try {
+      return tippingService.getSDK()
+    } catch {
+      return null
+    }
+  }, [isInitialized])
+
   return {
     // State
     isInitialized,
     isLoading,
     error,
+    
+    // SDK instance
+    sdk: getSDKInstance(),
     
     // Actions
     initialize,

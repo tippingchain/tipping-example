@@ -59,20 +59,52 @@ const HomePage = () => {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl p-8 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Welcome to TippingChain
+          TippingChain Demo
         </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-          Experience the future of multi-chain tipping with integrated Relay.link bridging, 
-          creator management, and viewer rewards - all powered by USDC payouts on ApeChain.
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+          Send tips in Base ETH that automatically convert to USDC on ApeChain for creators
         </p>
         
-        {!isConnected && (
-          <div className="bg-white/70 backdrop-blur-sm rounded-lg p-4 max-w-md mx-auto">
-            <p className="text-gray-700 font-medium">
-              🔗 Connect your wallet to get started
-            </p>
+        {/* Step-by-step guide */}
+        <div className="bg-white rounded-xl p-6 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">How it Works - 3 Simple Steps</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">1</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Connect Wallet</h3>
+              <p className="text-sm text-gray-600">Connect your wallet using the button in the top right corner</p>
+              {!isConnected && (
+                <div className="mt-2 text-orange-600 font-medium">⚠️ Not connected yet</div>
+              )}
+              {isConnected && (
+                <div className="mt-2 text-green-600 font-medium">✅ Connected!</div>
+              )}
+            </div>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">2</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Select Creator</h3>
+              <p className="text-sm text-gray-600">Creator #1 is pre-selected for demo purposes</p>
+              <div className="mt-2 text-blue-600 font-medium">🎯 Demo Creator #{ENV.DEMO_CREATOR_ID}</div>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">3</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Send Tip</h3>
+              <p className="text-sm text-gray-600">Tip in Base ETH - automatically converts to USDC on ApeChain</p>
+              <div className="mt-2 text-indigo-600 font-medium">🔄 Base ETH → ApeChain USDC</div>
+            </div>
           </div>
-        )}
+          
+          <div className="mt-8">
+            <Link
+              to={ROUTES.STREAMING}
+              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl transform hover:scale-105 transition-all duration-200 shadow-lg"
+            >
+              {!isConnected ? '🔗 Start Demo (Connect Wallet First)' : '🚀 Start Tipping Demo'}
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* Features Grid */}

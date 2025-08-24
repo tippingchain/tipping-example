@@ -1,8 +1,47 @@
 import { Link, useLocation } from 'react-router-dom'
 import { ConnectButton } from 'thirdweb/react'
 import { createThirdwebClient } from 'thirdweb'
+import { defineChain } from 'thirdweb/chains'
 import { useWallet } from '../hooks'
 import { ROUTES, ENV } from '../utils/constants'
+
+// Define Holesky testnet chain
+const holeskyTestnet = defineChain({
+  id: 17000,
+  name: 'Ethereum Holesky Testnet',
+  rpc: 'https://ethereum-holesky-rpc.publicnode.com',
+  nativeCurrency: {
+    name: 'Ether',
+    symbol: 'ETH',
+    decimals: 18,
+  },
+  blockExplorers: [
+    {
+      name: 'Holesky Etherscan',
+      url: 'https://holesky.etherscan.io',
+    },
+  ],
+  testnet: true,
+})
+
+// Define Curtis testnet chain  
+const curtisTestnet = defineChain({
+  id: 33111,
+  name: 'ApeChain Curtis Testnet',
+  rpc: 'https://curtis.rpc.caldera.xyz/http',
+  nativeCurrency: {
+    name: 'ApeCoin',
+    symbol: 'APE',
+    decimals: 18,
+  },
+  blockExplorers: [
+    {
+      name: 'Curtis Explorer',
+      url: 'https://curtis.explorer.caldera.xyz',
+    },
+  ],
+  testnet: true,
+})
 
 // Create ThirdWeb client
 const client = createThirdwebClient({
@@ -14,12 +53,7 @@ const Navigation = () => {
   const { user, canAccessAdmin } = useWallet()
 
   const navigationItems = [
-    { label: 'Home', path: ROUTES.HOME },
-    { label: 'Streaming', path: ROUTES.STREAMING },
-    { label: 'Viewer Rewards', path: ROUTES.VIEWER_REWARDS },
-    { label: 'Analytics', path: ROUTES.ANALYTICS },
-    { label: 'Transactions', path: ROUTES.TRANSACTION_HISTORY },
-    ...(canAccessAdmin ? [{ label: 'Admin', path: ROUTES.ADMIN }] : [])
+    { label: 'TippingChain Demo', path: ROUTES.HOME }
   ]
 
   const isActiveRoute = (path: string) => {
@@ -43,7 +77,7 @@ const Navigation = () => {
                 style={{ width: '24px', height: '24px' }}
               />
               <span className="text-xl font-bold text-gray-900">
-                TippingChain Demo
+                🧪 TippingChain Holesky Demo
               </span>
             </div>
             
@@ -82,7 +116,10 @@ const Navigation = () => {
                 )}
               </div>
             )}
-            <ConnectButton client={client} />
+            <ConnectButton 
+              client={client}
+              chains={[holeskyTestnet, curtisTestnet]}
+            />
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
-// Environment configuration
+// Environment configuration - TESTNET ONLY
 export const ENV = {
   THIRDWEB_CLIENT_ID: import.meta.env.VITE_THIRDWEB_CLIENT_ID || 'df6b18c1d07bf0cc9287b48180157b10',
-  ENVIRONMENT: import.meta.env.VITE_ENVIRONMENT || 'production',
-  USE_TESTNET: import.meta.env.VITE_USE_TESTNET === 'true',
-  DEFAULT_CHAIN_ID: Number(import.meta.env.VITE_DEFAULT_CHAIN_ID) || 8453,
+  ENVIRONMENT: 'development', // Always development for testnet
+  USE_TESTNET: true, // Always true - this is a testnet-only app
+  DEFAULT_CHAIN_ID: 17000, // Always Holesky testnet
   RELAY_API_URL: import.meta.env.VITE_RELAY_API_URL || 'https://api.relay.link',
   DEMO_CREATOR_ID: Number(import.meta.env.VITE_DEMO_CREATOR_ID) || 1,
   DEMO_CREATOR_WALLET: import.meta.env.VITE_DEMO_CREATOR_WALLET || '0x479945d7931baC3343967bD0f839f8691E54a66e',
@@ -13,9 +13,9 @@ export const ENV = {
 
 // Application constants
 export const APP_CONFIG = {
-  NAME: 'TippingChain Demo',
-  VERSION: '1.0.0',
-  DESCRIPTION: 'Complete demo application showcasing TippingChain features',
+  NAME: 'TippingChain Testnet Demo',
+  VERSION: '1.0.0-testnet',
+  DESCRIPTION: 'Testnet demo showcasing cross-chain tipping: Holesky → Curtis',
   DEFAULT_TIP_AMOUNT: '0.001',
   MAX_BATCH_SIZE: 50,
   REFRESH_INTERVAL: 30000, // 30 seconds

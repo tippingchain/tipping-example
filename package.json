@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@tippingchain/contracts-interface": "1.5.3",
-    "@tippingchain/sdk": "2.5.3",
-    "@tippingchain/ui-react": "2.6.2",
+    "@tippingchain/sdk": "2.5.4",
+    "@tippingchain/ui-react": "2.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.7.1",
